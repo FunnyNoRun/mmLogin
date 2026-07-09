@@ -1,0 +1,57 @@
+/*
+ * 配色变量 —— 取自 Stapxs-QQ-Lite 的调色板
+ * 通过 <html data-theme="light|dark"> 切换
+ */
+
+:root,
+[data-theme='light'] {
+    /* 卡片 / 背景 */
+    --color-bg: #f8f9fa;
+    --color-card: #ffffff;
+    --color-card-1: #f1f3f5;
+    --color-card-2: #e3e8ec;
+
+    --color-bg-rgb: 248, 249, 250;
+    --color-card-rgb: 255, 255, 255;
+    --color-card-1-rgb: 241, 243, 245;
+    --color-card-2-rgb: 227, 232, 236;
+
+    /* 字体 */
+    --color-font: #50534f;
+    --color-font-1: #5c5f5a;
+    --color-font-2: #7d817c;
+    --color-font-r: #f8f9fa;
+
+    /* 阴影 */
+    --color-shader: #72727240;
+
+    /* 主题色 */
+    --color-main: #606e7a;
+    --color-main-rgb: 96, 110, 122;
+
+    color-scheme: light;
+}
+
+[data-theme='dark'] {
+    --color-bg: #2d2d2d;
+    --color-card: #3a3a3a;
+    --color-card-1: #494949;
+    --color-card-2: #5f5f5f;
+
+    --color-bg-rgb: 45, 45, 45;
+    --color-card-rgb: 58, 58, 58;
+    --color-card-1-rgb: 73, 73, 73;
+    --color-card-2-rgb: 95, 95, 95;
+
+    --color-font: #ffffff;
+    --color-font-1: #cfcfcf;
+    --color-font-2: #b0b0b0;
+    --color-font-r: #2d2d2d;
+
+    --color-shader: #1010109c;
+
+    --color-main: #c8e5ff;
+    --color-main-rgb: 200, 229, 255;
+
+    color-scheme: dark;
+}

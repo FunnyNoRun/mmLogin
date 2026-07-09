@@ -1,0 +1,23 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "mmlogin"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Cloudflare Pages：`nuxt build`（cloudflare-pages preset）会输出到 dist/
+pages_build_output_dir = "dist"
+
+# ── 后端资源在这里预留（用到时取消注释并 `wrangler` 创建对应资源）──────────────
+# D1 数据库（存用户 / 账号密码哈希）
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "mmlogin-db"
+# database_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+
+# KV（存 session / 验证码等）
+# [[kv_namespaces]]
+# binding = "SESSIONS"
+# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# 环境变量 / 密钥（`wrangler pages secret put JWT_SECRET`）
+# [vars]
+# APP_ENV = "production"

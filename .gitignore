@@ -1,0 +1,21 @@
+.claude/
+.idea/
+
+# Nuxt / Nitro
+.nuxt/
+.output/
+.data/
+dist/
+
+# Node
+node_modules/
+*.log
+.DS_Store
+
+# Cloudflare / Wrangler
+.wrangler/
+.dev.vars
+
+# Env
+.env
+.env.*
