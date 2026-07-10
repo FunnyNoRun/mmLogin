@@ -23,10 +23,8 @@ async function onConfirm() {
     }
 }
 
-// 移动端优先给移动深链接，PC 给 PC 深链接；两个都放，主按钮按端选择
+// 按当前设备选深链接：移动端给移动深链接，PC 给 PC 深链接
 const primaryLink = computed(() => (mobile.value ? GROUP_LINK_MOBILE : GROUP_LINK_PC))
-const secondaryLink = computed(() => (mobile.value ? GROUP_LINK_PC : GROUP_LINK_MOBILE))
-const secondaryLabel = computed(() => (mobile.value ? '用电脑 QQ 打开' : '用手机 QQ 打开'))
 
 function openGroup(link: string) {
     // 深链接：新开一个隐藏跳转，避免污染当前页历史
@@ -61,9 +59,6 @@ function openGroup(link: string) {
                         <button class="mm-btn mm-btn--primary" @click="openGroup(primaryLink)">
                             <AppIcon name="qq" />
                             一键加群
-                        </button>
-                        <button class="mm-btn mm-btn--ghost" @click="openGroup(secondaryLink)">
-                            {{ secondaryLabel }}
                         </button>
                     </div>
                     <p class="mm-modal__hint">加群后回到「继续」再点一次即可完成校验</p>
