@@ -72,7 +72,7 @@ defineProps<{
 
 <style scoped>
 .wave-root {
-    position: absolute;
+    position: fixed;
     inset: 0;
     z-index: 0;
     pointer-events: none;

@@ -45,27 +45,9 @@ a {
 }
 
 /*
- * 背景铺底：主色微光 + 底色渐变
- * 波浪由 <WaveBackground> 组件叠在上面
+ * 背景铺底与舞台（.mm-root / .mm-stage）由 layouts/default.vue 负责，
+ * 波浪由 <WaveBackground> 叠在上面，主题切换按钮样式见下。
  */
-.mm-stage {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    height: 100dvh;
-    width: 100%;
-    overflow: hidden;
-    background:
-        radial-gradient(
-            120% 80% at 50% -10%,
-            rgba(var(--color-main-rgb), 0.16),
-            transparent 60%
-        ),
-        var(--color-bg);
-    transition: background 0.4s ease;
-}
 
 /* ── 右上角主题切换按钮 ─────────────────────────────────── */
 .theme-toggle {
@@ -100,6 +82,86 @@ a {
 .theme-toggle svg {
     width: 18px;
     height: 18px;
+}
+
+/* ── 磨砂玻璃卡片基座（登录卡片同款，供认证/资料等页面复用）──── */
+.mm-glass-card {
+    position: relative;
+    width: 340px;
+    max-width: calc(100vw - 40px);
+    padding: 34px 30px 40px;
+    border-radius: 24px;
+    background: linear-gradient(
+        160deg,
+        rgba(var(--color-card-rgb), 0.2),
+        rgba(var(--color-card-rgb), 0.1)
+    );
+    border: 1px solid rgba(var(--color-card-2-rgb), 0.55);
+    box-shadow: 0 24px 60px -18px var(--color-shader),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(22px) saturate(1.4);
+    -webkit-backdrop-filter: blur(22px) saturate(1.4);
+    transition: background 0.5s ease, border-color 0.5s ease;
+}
+/* 内容较多的卡片（资料页）稍微加厚背景以保证可读性 */
+.mm-glass-card--solid {
+    background: linear-gradient(
+        160deg,
+        rgba(var(--color-card-rgb), 0.86),
+        rgba(var(--color-card-rgb), 0.72)
+    );
+}
+
+/* 卡片头部：logo + 标题 + 副标题（登录卡片同款）*/
+.mm-card-head {
+    text-align: center;
+    margin-bottom: 22px;
+}
+.mm-card-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    overflow: hidden;
+    color: var(--color-main);
+    background: rgba(var(--color-main-rgb), 0.12);
+    margin-bottom: 14px;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+.mm-card-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.mm-card-logo svg {
+    width: 24px;
+    height: 24px;
+}
+.mm-card-head h1 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--color-font);
+    letter-spacing: 0.02em;
+    transition: color 0.5s ease;
+}
+.mm-card-head p {
+    margin-top: 6px;
+    font-size: 0.8rem;
+    color: var(--color-font-2);
+    transition: color 0.5s ease;
+}
+
+/* 次要（幽灵）按钮，与 .mm-submit 搭配 */
+.mm-submit--ghost {
+    color: var(--color-font-1);
+    background: rgba(var(--color-card-1-rgb), 0.8);
+    box-shadow: none;
+}
+.mm-submit--ghost:hover {
+    background: rgba(var(--color-card-2-rgb), 0.9);
+    box-shadow: none;
 }
 
 /* ── 表单字段（登录 / 注册共用）─────────────────────────── */
