@@ -92,7 +92,7 @@ onBeforeUnmount(stopPolling)
 
 <template>
     <Transition name="upg" appear>
-        <div class="upg-mask" @click.self="emit('close')">
+        <div class="upg-mask">
             <div class="upg mm-glass-card mm-glass-card--solid" role="dialog" aria-modal="true">
                 <button class="upg__close" aria-label="关闭" @click="emit('close')">
                     <AppIcon name="xmark" />

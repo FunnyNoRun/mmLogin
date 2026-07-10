@@ -34,7 +34,7 @@ function openGroup(link: string) {
 
 <template>
     <Transition name="modal">
-        <div v-if="state.open" class="mm-modal-mask" @click.self="close">
+        <div v-if="state.open" class="mm-modal-mask">
             <div class="mm-modal" role="dialog" aria-modal="true">
                 <button class="mm-modal__close" aria-label="关闭" @click="close">
                     <AppIcon name="xmark" />

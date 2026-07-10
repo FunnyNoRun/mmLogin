@@ -44,11 +44,15 @@ function decode(imageData: ImageData): string | null {
 
 async function handleRaw(text: string) {
     if (submitting || status.value === 'success') return
-    if (!QR_RE.test(text.trim())) {
+    const qr = text.trim()
+    if (!QR_RE.test(qr)) {
         notify(false, '非法二维码：这不是一卡通认证码', { title: '识别失败' })
         return
     }
-    await submit(text.trim())
+    // 事件一：识别到二维码（与后续认证结果分开提示）
+    notify(true, '已识别一卡通二维码，正在核验身份…', { title: '识别成功' })
+    // 事件二：认证结果在 submit() 内单独提示
+    await submit(qr)
 }
 
 async function submit(qr: string) {
