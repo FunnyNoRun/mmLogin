@@ -82,7 +82,7 @@ function go(target: 'login' | 'register') {
     left: 0;
     width: 100%;
     padding: 34px 30px 40px;
-    border-radius: 24px;
+    border-radius: var(--radius-lg);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 
@@ -117,7 +117,7 @@ function go(target: 'login' | 'register') {
     justify-content: center;
     width: 54px;
     height: 54px;
-    border-radius: 16px;
+    border-radius: var(--radius-md);
     overflow: hidden;
     color: var(--color-main);
     background: rgba(var(--color-main-rgb), 0.12);
@@ -150,7 +150,7 @@ function go(target: 'login' | 'register') {
     grid-template-columns: 1fr 1fr;
     padding: 4px;
     margin-bottom: 20px;
-    border-radius: 50px;
+    border-radius: var(--radius-md);
     background: rgba(var(--color-card-1-rgb), 0.6);
     border: 1px solid rgba(var(--color-card-2-rgb), 0.5);
     transition: background-color 0.5s ease, border-color 0.5s ease;
@@ -161,7 +161,7 @@ function go(target: 'login' | 'register') {
     left: 4px;
     width: calc(50% - 4px);
     height: calc(100% - 8px);
-    border-radius: 50px;
+    border-radius: var(--radius-sm);
     background: var(--color-main);
     box-shadow: 0 4px 14px rgba(var(--color-main-rgb), 0.4);
     transition: transform 0.45s cubic-bezier(0.68, -0.3, 0.27, 1.3),

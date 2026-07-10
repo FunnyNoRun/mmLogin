@@ -49,7 +49,7 @@ const { toasts, dismiss } = useToast()
     align-items: flex-start;
     gap: 12px;
     padding: 13px 16px;
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     background: linear-gradient(
         160deg,
         rgba(var(--color-card-rgb), 0.82),
@@ -69,7 +69,7 @@ const { toasts, dismiss } = useToast()
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     color: #fff;
 }
 .mm-toast__icon svg {

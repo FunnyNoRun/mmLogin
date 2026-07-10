@@ -21,7 +21,7 @@ function onSubmit() {
                 v-model="account"
                 type="text"
                 autocomplete="username"
-                placeholder="设置账号"
+                placeholder="输入昵称"
                 required
             >
         </label>

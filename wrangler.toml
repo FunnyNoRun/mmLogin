@@ -11,7 +11,7 @@ pages_build_output_dir = "dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "mmlogin-db"
-database_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+database_id = "febb6439-5e1a-44ef-956a-c9f2c2a0813f"
 # 表 mm_store(k,v,exp) 会在首次请求时自动创建（CREATE TABLE IF NOT EXISTS）
 
 # ── 环境变量 / 密钥 ────────────────────────────────────────────────────────────

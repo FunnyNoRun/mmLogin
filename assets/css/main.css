@@ -60,7 +60,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     color: var(--color-main);
     background: rgba(var(--color-card-rgb), 0.45);
     border: 1px solid rgba(var(--color-card-2-rgb), 0.6);
@@ -90,7 +90,7 @@ a {
     width: 340px;
     max-width: calc(100vw - 40px);
     padding: 34px 30px 40px;
-    border-radius: 24px;
+    border-radius: var(--radius-lg);
     background: linear-gradient(
         160deg,
         rgba(var(--color-card-rgb), 0.2),
@@ -123,7 +123,7 @@ a {
     justify-content: center;
     width: 54px;
     height: 54px;
-    border-radius: 16px;
+    border-radius: var(--radius-md);
     overflow: hidden;
     color: var(--color-main);
     background: rgba(var(--color-main-rgb), 0.12);
@@ -178,7 +178,7 @@ a {
     gap: 12px;
     padding: 0 18px;
     height: 48px;
-    border-radius: 50px;
+    border-radius: var(--radius-md);
     background: rgba(var(--color-card-1-rgb), 0.65);
     border: 1px solid transparent;
     transition: background 0.3s ease, border-color 0.3s ease,
@@ -254,7 +254,7 @@ a {
     margin-top: 8px;
     height: 46px;
     width: 100%;
-    border-radius: 50px;
+    border-radius: var(--radius-md);
     font-size: 0.92rem;
     font-weight: 600;
     letter-spacing: 0.08em;

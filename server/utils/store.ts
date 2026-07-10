@@ -18,6 +18,8 @@ export interface KV {
     get<T = unknown>(key: string): Promise<T | null>
     put(key: string, value: unknown, ttlSeconds?: number): Promise<void>
     del(key: string): Promise<void>
+    /** 清空全部数据（演示用「清库」，删掉所有账号 / 会话 / 资料） */
+    clear(): Promise<void>
 }
 
 const now = () => Math.floor(Date.now() / 1000)
@@ -43,6 +45,9 @@ const memoryKV: KV = {
     },
     async del(key) {
         memoryMap.delete(key)
+    },
+    async clear() {
+        memoryMap.clear()
     },
 }
 
@@ -85,6 +90,10 @@ function d1KV(db: any): KV {
         async del(key) {
             await ensureTable(db)
             await db.prepare('DELETE FROM mm_store WHERE k = ?').bind(key).run()
+        },
+        async clear() {
+            await ensureTable(db)
+            await db.prepare('DELETE FROM mm_store').run()
         },
     }
 }

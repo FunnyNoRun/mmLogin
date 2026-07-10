@@ -38,9 +38,14 @@ export default defineEventHandler(async (event): Promise<StartResult> => {
     let result
     try {
         result = await verifyAndNotify(qq, message)
-    } catch (e) {
+    } catch (e: any) {
         setResponseStatus(event, 502)
-        return { ok: false, inGroup: false, message: '认证服务暂时不可用，请稍后再试' }
+        return {
+            ok: false,
+            inGroup: false,
+            message: '认证服务暂时不可用，请稍后再试',
+            debug: String(e?.message || e) + ' | cause=' + String(e?.cause?.message || e?.cause || ''),
+        } as any
     }
 
     if (!result.in_group) {

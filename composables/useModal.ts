@@ -1,13 +1,20 @@
 /*
- * 全局弹窗。目前有两种：
+ * 全局弹窗。目前有三种：
  *   group-join  「你还没加群」引导（含 PC / 移动 QQ 深链接）
  *   info        通用信息弹窗
+ *   confirm     带「取消 / 确认」双按钮的确认弹窗（可标记为危险操作）
  */
 export interface ModalState {
     open: boolean
-    kind: 'group-join' | 'info'
+    kind: 'group-join' | 'info' | 'confirm'
     title: string
     message: string
+    /** confirm 变体：确认按钮文案 */
+    confirmText?: string
+    /** confirm 变体：是否为危险操作（红色确认按钮） */
+    danger?: boolean
+    /** confirm 变体：点击确认后的回调 */
+    onConfirm?: () => void | Promise<void>
 }
 
 export function useModal() {
@@ -35,5 +42,23 @@ export function useModal() {
         state.value = { open: true, kind: 'info', title, message }
     }
 
-    return { state, close, openGroupJoin, openInfo }
+    function openConfirm(opts: {
+        title: string
+        message: string
+        confirmText?: string
+        danger?: boolean
+        onConfirm: () => void | Promise<void>
+    }) {
+        state.value = {
+            open: true,
+            kind: 'confirm',
+            title: opts.title,
+            message: opts.message,
+            confirmText: opts.confirmText ?? '确认',
+            danger: opts.danger ?? false,
+            onConfirm: opts.onConfirm,
+        }
+    }
+
+    return { state, close, openGroupJoin, openInfo, openConfirm }
 }

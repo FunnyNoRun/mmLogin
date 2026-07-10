@@ -3,6 +3,19 @@
  * 通过 <html data-theme="light|dark"> 切换
  */
 
+/*
+ * 圆角 token —— 全站统一的精致小圆角。
+ * 与主题无关，挂在 :root 上始终生效；组件一律引用这些变量，
+ * 不再各自硬编码，改一处即可整体调节圆角风格。
+ */
+:root {
+    --radius-lg: 14px; /* 卡片、弹窗等大面板 */
+    --radius-md: 10px; /* 按钮、输入框、头像、分段控件 */
+    --radius-sm: 8px; /* 小图标块、分组条、印章 */
+    --radius-xs: 6px; /* 徽标等极小元素 */
+    --radius-full: 50%; /* 圆形元素 */
+}
+
 :root,
 [data-theme='light'] {
     /* 卡片 / 背景 */

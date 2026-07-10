@@ -269,7 +269,7 @@ onBeforeUnmount(stopCamera)
     width: 60px;
     height: 60px;
     margin-bottom: 14px;
-    border-radius: 20px;
+    border-radius: var(--radius-md);
     color: #fff;
 }
 .auth-page__msg.ok .auth-page__msg-icon {
@@ -309,7 +309,7 @@ onBeforeUnmount(stopCamera)
     position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: 18px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     background: #000;
 }
@@ -386,7 +386,7 @@ onBeforeUnmount(stopCamera)
     justify-content: center;
     gap: 8px;
     padding: 40px 20px;
-    border-radius: 18px;
+    border-radius: var(--radius-lg);
     text-align: center;
     cursor: pointer;
     border: 1.5px dashed rgba(var(--color-main-rgb), 0.45);
@@ -403,7 +403,7 @@ onBeforeUnmount(stopCamera)
     justify-content: center;
     width: 56px;
     height: 56px;
-    border-radius: 18px;
+    border-radius: var(--radius-md);
     color: var(--color-main);
     background: rgba(var(--color-main-rgb), 0.14);
 }

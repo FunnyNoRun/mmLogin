@@ -63,6 +63,17 @@ async function switchTheme() {
     <div class="mm-root" :class="{ 'bg-snap': bgSnap }" :style="bgHold ? { background: bgHoldColor } : {}">
         <WaveBackground :covering="covering" :snap="snap" :tide-color="tideColor" />
 
+        <a
+            class="gh-link"
+            href="https://github.com/FunnyNoRun/mmLogin"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="在 GitHub 上查看源码"
+            title="在 GitHub 上查看源码"
+        >
+            <AppIcon name="github" />
+        </a>
+
         <button
             class="theme-toggle"
             :disabled="switching"
@@ -84,6 +95,39 @@ async function switchTheme() {
 </template>
 
 <style scoped>
+/* 右上角 GitHub 链接：与主题切换按钮同款磨砂圆钮，排在它左侧 */
+.gh-link {
+    position: fixed;
+    top: 22px;
+    right: 78px;
+    z-index: 20;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    color: var(--color-font-1);
+    background: rgba(var(--color-card-rgb), 0.45);
+    border: 1px solid rgba(var(--color-card-2-rgb), 0.6);
+    backdrop-filter: blur(12px) saturate(1.2);
+    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+    box-shadow: 0 4px 20px var(--color-shader);
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease,
+        border-color 0.5s ease;
+}
+.gh-link:hover {
+    transform: translateY(-2px) scale(1.06);
+    color: var(--color-main);
+}
+.gh-link:active {
+    transform: scale(0.94);
+}
+.gh-link svg {
+    width: 20px;
+    height: 20px;
+}
+
 .mm-root {
     position: relative;
     height: 100vh;

@@ -10,6 +10,19 @@ const { state, close } = useModal()
 const mobile = ref(false)
 onMounted(() => (mobile.value = isMobileUA()))
 
+const confirming = ref(false)
+async function onConfirm() {
+    if (confirming.value) return
+    const cb = state.value.onConfirm
+    confirming.value = true
+    try {
+        await cb?.()
+        close()
+    } finally {
+        confirming.value = false
+    }
+}
+
 // 移动端优先给移动深链接，PC 给 PC 深链接；两个都放，主按钮按端选择
 const primaryLink = computed(() => (mobile.value ? GROUP_LINK_MOBILE : GROUP_LINK_PC))
 const secondaryLink = computed(() => (mobile.value ? GROUP_LINK_PC : GROUP_LINK_MOBILE))
@@ -29,8 +42,11 @@ function openGroup(link: string) {
                     <AppIcon name="xmark" />
                 </button>
 
-                <span class="mm-modal__icon" :class="{ warn: state.kind === 'group-join' }">
-                    <AppIcon :name="state.kind === 'group-join' ? 'users' : 'check'" />
+                <span
+                    class="mm-modal__icon"
+                    :class="{ warn: state.kind === 'group-join', danger: state.kind === 'confirm' && state.danger }"
+                >
+                    <AppIcon :name="state.kind === 'group-join' ? 'users' : state.kind === 'confirm' ? (state.danger ? 'trash' : 'check') : 'check'" />
                 </span>
 
                 <h3 class="mm-modal__title">{{ state.title }}</h3>
@@ -51,6 +67,22 @@ function openGroup(link: string) {
                         </button>
                     </div>
                     <p class="mm-modal__hint">加群后回到「继续」再点一次即可完成校验</p>
+                </template>
+
+                <template v-else-if="state.kind === 'confirm'">
+                    <div class="mm-modal__actions mm-modal__actions--row">
+                        <button class="mm-btn mm-btn--ghost" :disabled="confirming" @click="close">
+                            取消
+                        </button>
+                        <button
+                            class="mm-btn"
+                            :class="state.danger ? 'mm-btn--danger' : 'mm-btn--primary'"
+                            :disabled="confirming"
+                            @click="onConfirm"
+                        >
+                            {{ confirming ? '处理中…' : state.confirmText }}
+                        </button>
+                    </div>
                 </template>
 
                 <template v-else>
@@ -82,7 +114,7 @@ function openGroup(link: string) {
     width: 340px;
     max-width: calc(100vw - 40px);
     padding: 30px 26px 26px;
-    border-radius: 24px;
+    border-radius: var(--radius-lg);
     text-align: center;
     background: linear-gradient(
         160deg,
@@ -105,7 +137,7 @@ function openGroup(link: string) {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     color: var(--color-font-2);
     transition: background 0.2s ease, color 0.2s ease;
 }
@@ -125,13 +157,17 @@ function openGroup(link: string) {
     width: 58px;
     height: 58px;
     margin-bottom: 16px;
-    border-radius: 18px;
+    border-radius: var(--radius-md);
     color: var(--color-main);
     background: rgba(var(--color-main-rgb), 0.14);
 }
 .mm-modal__icon.warn {
     color: #e0a144;
     background: rgba(224, 161, 68, 0.16);
+}
+.mm-modal__icon.danger {
+    color: #e2707a;
+    background: rgba(226, 112, 122, 0.16);
 }
 .mm-modal__icon svg {
     width: 26px;
@@ -157,7 +193,7 @@ function openGroup(link: string) {
     gap: 8px;
     margin: 18px 0 4px;
     padding: 10px;
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     font-size: 0.86rem;
     font-weight: 600;
     color: var(--color-font-1);
@@ -175,13 +211,26 @@ function openGroup(link: string) {
     gap: 10px;
     margin-top: 18px;
 }
+/* 确认弹窗：取消 / 确认横向并排 */
+.mm-modal__actions--row {
+    flex-direction: row;
+}
+.mm-modal__actions--row .mm-btn {
+    flex: 1;
+}
+.mm-btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+    transform: none;
+    box-shadow: none;
+}
 .mm-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     height: 44px;
-    border-radius: 50px;
+    border-radius: var(--radius-md);
     font-size: 0.88rem;
     font-weight: 600;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
@@ -205,6 +254,16 @@ function openGroup(link: string) {
 }
 .mm-btn--ghost:hover {
     background: rgba(var(--color-card-2-rgb), 0.9);
+}
+.mm-btn--danger {
+    color: #fff;
+    background: #e2707a;
+    box-shadow: 0 8px 22px rgba(226, 112, 122, 0.4);
+}
+.mm-btn--danger:hover {
+    transform: translateY(-2px);
+    background: #db5b66;
+    box-shadow: 0 12px 28px rgba(226, 112, 122, 0.5);
 }
 
 .mm-modal__hint {
